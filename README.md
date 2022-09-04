@@ -11,10 +11,62 @@ pip3 install pydantic
 
 You can see all dependencies in [requirements.txt](requirements.txt).
 
+## Introdution
+
+```python
+from datetime import date
+from pydantic import BaseModel
+
+# Declare a variable as str and get editor support inside the function
+def main(user_id: str):
+    return user_id
+
+
+# One Pydantic model
+class User(BaseModel):
+    id: int
+    name: str
+    joined: date
+
+my_user: User = User(id=3, name="John Doe", joined="2018-07-19")
+
+second_user_data = {
+    "id": 4,
+    "name": "Mary",
+    "joined": "2018-11-30",
+}
+my_second_user: User = User(**second_user_data)
+
+# inspecting the types of variables
+print(type(my_second_user))
+```
+
+```python
+<class 'dict'>
+```
+
+```python
+type (my_second_user)
+```
+
+```python
+# <class '__main__.User'>
+```
+
 ## Testing:
 
 ```bash
 uvicorn main:app --host "0.0.0.0" --port 8000 --reload
+```
+
+If you want to monitor the server with SkyWalking Python agent do this:
+
+```bash
+pip3 install "apache-skywalking" # to install sw-python
+```
+
+```bash
+sw-python run uvicorn main:app --host "0.0.0.0" --port 8000 --reload
 ```
 
 In another Terminal:
