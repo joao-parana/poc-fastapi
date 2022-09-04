@@ -13,6 +13,7 @@ You can see all dependencies in [requirements.txt](requirements.txt).
 
 ## Introdution
 
+
 ```python
 from datetime import date
 from pydantic import BaseModel
@@ -30,16 +31,23 @@ class User(BaseModel):
 
 my_user: User = User(id=3, name="John Doe", joined="2018-07-19")
 
+# The BaseModel class of the pydantic module accepts
+# dictionaries (hashmap) as input, for convenience
 second_user_data = {
     "id": 4,
     "name": "Mary",
     "joined": "2018-11-30",
 }
 my_second_user: User = User(**second_user_data)
-
-# inspecting the types of variables
-print(type(my_second_user))
 ```
+
+Inspecting the types of variables
+
+```python
+print(type(second_user_data))
+```
+
+display:
 
 ```python
 <class 'dict'>
@@ -49,8 +57,10 @@ print(type(my_second_user))
 type (my_second_user)
 ```
 
+display:
+
 ```python
-# <class '__main__.User'>
+<class '__main__.User'>
 ```
 
 ## Testing:
